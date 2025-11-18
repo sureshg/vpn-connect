@@ -1,5 +1,7 @@
 import kotlin.test.*
 import kotlinx.coroutines.test.runTest
+import vip.TokenResult
+import vip.VipAccess
 
 class VipAccessTest {
 
