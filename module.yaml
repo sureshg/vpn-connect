@@ -1,8 +1,15 @@
 product:
-  type: jvm/app
-  # platforms: [ macosArm64 ]
+  type: macos/app
+  platforms: [ macosArm64 ]
 
 settings:
+  jvm:
+    release: 25
+    storeParameterNames: true
+    jdk:
+      version: 25
+      distributions: [ zulu ]
+
   kotlin:
     version: 2.3.0-RC
     languageVersion: 2.3
