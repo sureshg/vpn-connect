@@ -24,8 +24,6 @@ import kotlin.math.abs
  *
  * **5. Add Format** — Write 15 bits encoding the error correction level and mask ID around finders
  * so scanners know how to decode.
- *
- * Written with AI assistance.
  */
 object QrCode {
 
@@ -363,29 +361,52 @@ class QrMatrix(val size: Int) {
   }
 
   /**
-   * Renders QR code as compact ASCII using Unicode half-block characters. Inverted for dark
-   * terminal backgrounds: light=filled, dark=space.
+   * Renders QR code as compact ASCII with a decorative frame. Uses Unicode half-block characters,
+   * inverted for dark terminal backgrounds.
+   *
+   * @param margin internal margin around the QR code
+   * @param label optional label to display in the frame header
    */
-  fun toAscii(margin: Int = 2) = buildString {
+  fun toAscii(margin: Int = 1, label: String = "") = buildString {
+    val contentWidth = size + margin * 2
+    val innerWidth = contentWidth + 2 // +2 for space padding inside borders
+
+    // Top border with optional centered label
+    append('╭')
+    val maxLen = innerWidth - 2 // space for padding around label
+    val header =
+        when {
+          label.isEmpty() -> ""
+          label.length > maxLen -> " ${label.take(maxLen - 1)}… "
+          else -> " $label "
+        }
+
+    val pad = innerWidth - header.length
+    append("─".repeat(pad / 2)).append(header).append("─".repeat(pad - pad / 2))
+    appendLine('╮')
+
+    // QR code rows
     for (y in -margin..<size + margin step 2) {
+      append("│ ")
       for (x in -margin..<size + margin) {
         val top = !isDark(y, x)
         val bot = !isDark(y + 1, x)
-        append(
-            when {
-              top && bot -> '█'
-              top -> '▀'
-              bot -> '▄'
-              else -> ' '
-            }
-        )
+        append(if (top && bot) '█' else if (top) '▀' else if (bot) '▄' else ' ')
       }
-      appendLine()
+      appendLine(" │")
     }
+
+    // Bottom border
+    append('╰').append("─".repeat(innerWidth)).appendLine('╯')
   }
 
   private fun isDark(y: Int, x: Int) = y in 0..<size && x in 0..<size && this[y, x]
 }
 
 /** Generates ASCII QR code from string. */
-fun String.toQrAscii(margin: Int = 1) = QrCode.encode(this).toAscii(margin)
+fun String.toQrAscii(label: String = "", margin: Int = 1) =
+    QrCode.encode(this)
+        .toAscii(
+            margin = margin,
+            label = label,
+        )
