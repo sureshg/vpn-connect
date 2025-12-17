@@ -11,7 +11,7 @@ settings:
       distributions: [ zulu ]
 
   kotlin:
-    version: 2.3.0-RC3
+    version: 2.3.0
     languageVersion: 2.3
     apiVersion: 2.3
     progressiveMode: true
