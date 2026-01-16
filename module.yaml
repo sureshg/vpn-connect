@@ -1,5 +1,5 @@
 product:
-  type: jvm/app
+  type: macos/app
   # platforms: [ macosArm64 ]
 
 settings:
@@ -15,6 +15,7 @@ settings:
     languageVersion: 2.3
     apiVersion: 2.3
     progressiveMode: true
+    powerAssert: enabled
     allWarningsAsErrors: false
     suppressWarnings: false
     verbose: false
