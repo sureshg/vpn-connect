@@ -1,5 +1,5 @@
 product:
-  type: macos/app
+  type: jvm/app
   # platforms: [ macosArm64 ]
 
 settings:
@@ -49,7 +49,7 @@ settings:
       - dev.whyoleg.cryptography.DelicateCryptographyApi
 
     serialization:
-      version: 1.10.0-RC
+      version: 1.10.0
       format: json
 
 settings@native:
