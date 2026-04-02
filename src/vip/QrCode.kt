@@ -201,7 +201,7 @@ object QrCode {
   private fun placePatterns(m: QrMatrix, version: Int) {
     val s = m.size
 
-    for ((cy, cx) in listOf(3 to 3, 3 to s - 4, s - 4 to 3)) {
+    for ([cy, cx] in listOf(3 to 3, 3 to s - 4, s - 4 to 3)) {
       for (dy in -4..4) for (dx in -4..4) {
         val y = cy + dy
         val x = cx + dx

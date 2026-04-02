@@ -2,9 +2,9 @@
 
 package vip
 
-import kotlin.time.Clock
 import kotlinx.serialization.Serializable
 import nl.adaptivity.xmlutil.serialization.XmlElement
+import kotlin.time.Clock
 
 @Serializable
 data class GetSharedSecretResponse(

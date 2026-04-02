@@ -1,4 +1,4 @@
-import io.github.oshai.kotlinlogging.*
+import io.github.oshai.kotlinlogging.KotlinLoggingConfiguration
 import vip.toQrAscii
 
 // fun main(args: Array<String>) = VpnConnect().subcommands(Provision()).main(args)

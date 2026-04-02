@@ -1,11 +1,11 @@
 package cmd
 
-import kotlin.time.Duration.Companion.milliseconds
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
 import vip.Token
 import vip.VipAccess
+import kotlin.time.Duration.Companion.milliseconds
 
 fun main() = runBlocking {
   //  val token = SvipClient.provision()

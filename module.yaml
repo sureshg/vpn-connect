@@ -15,16 +15,15 @@ settings:
         - --add-modules=jdk.incubator.vector
     #   - --enable-preview
   kotlin:
-    version: 2.3.20
-    languageVersion: 2.5
-    apiVersion: 2.5
+    version: 2.4.0-Beta1
+    languageVersion: 2.4
+    apiVersion: 2.4
     progressiveMode: true
     allWarningsAsErrors: false
     suppressWarnings: false
     verbose: false
     freeCompilerArgs:
       - -Wextra
-      - -Xcontext-parameters
       - -Xexpect-actual-classes
       - -Xreport-all-warnings
       - -Xreturn-value-checker=full
@@ -32,14 +31,15 @@ settings:
       - -Xannotation-default-target=param-property
       - -Xexplicit-backing-fields
       - -Xconsistent-data-class-copy-visibility
-    compilerPlugins:
-      - id: dev.zacsweers.redacted.compiler
-        dependency: $libs.kotlin.redacted.compilerPlugin
-        options:
-          enabled: true
-          replacementString: "█"
-          redactedAnnotations: dev/zacsweers/redacted/annotations/Redacted
-          unredactedAnnotations: dev/zacsweers/redacted/annotations/Unredacted
+      - -Xname-based-destructuring=complete
+    # compilerPlugins:
+    #   - id: dev.zacsweers.redacted.compiler
+    #     dependency: $libs.kotlin.redacted.compilerPlugin
+    #     options:
+    #       enabled: true
+    #       replacementString: "█"
+    #       redactedAnnotations: dev/zacsweers/redacted/annotations/Redacted
+    #       unredactedAnnotations: dev/zacsweers/redacted/annotations/Unredacted
 
     optIns:
       - kotlin.ExperimentalStdlibApi

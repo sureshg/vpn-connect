@@ -1,8 +1,11 @@
 package vip
 
 import com.osmerion.kotlin.io.encoding.Base32
-import dev.whyoleg.cryptography.*
-import dev.whyoleg.cryptography.algorithms.*
+import dev.whyoleg.cryptography.CryptographyProvider
+import dev.whyoleg.cryptography.algorithms.AES
+import dev.whyoleg.cryptography.algorithms.HMAC
+import dev.whyoleg.cryptography.algorithms.SHA1
+import dev.whyoleg.cryptography.algorithms.SHA256
 import io.github.oshai.kotlinlogging.KotlinLogging
 import io.ktor.client.*
 import io.ktor.client.call.*
@@ -12,20 +15,20 @@ import io.ktor.client.plugins.logging.*
 import io.ktor.client.plugins.logging.LogLevel.*
 import io.ktor.client.plugins.logging.LoggingFormat.*
 import io.ktor.client.request.*
-import io.ktor.client.request.forms.submitForm
-import io.ktor.client.statement.bodyAsText
+import io.ktor.client.request.forms.*
+import io.ktor.client.statement.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.xml.*
 import io.ktor.util.*
-import kotlin.io.encoding.Base64
-import kotlin.math.pow
-import kotlin.time.Clock
-import kotlin.time.Duration.Companion.seconds
 import kotlinx.io.Buffer
 import kotlinx.io.readByteArray
 import nl.adaptivity.xmlutil.XmlDeclMode
 import nl.adaptivity.xmlutil.serialization.XML
 import vip.TokenResult.*
+import kotlin.io.encoding.Base64
+import kotlin.math.pow
+import kotlin.time.Clock
+import kotlin.time.Duration.Companion.seconds
 
 class VipAccess(val clientId: String = "kotlin-vipaccess") : AutoCloseable {
 
@@ -148,7 +151,7 @@ class VipAccess(val clientId: String = "kotlin-vipaccess") : AutoCloseable {
     val iv = Base64.decode(res.SecretContainer.EncryptionMethod.IV)
     val cipher = Base64.decode(secret.Data.Cipher)
 
-    val (_, algo, _, digitsStr) = secret.Usage.AI.type.split("-")
+    val [_, algo, _, digitsStr] = secret.Usage.AI.type.split("-")
     require(digitsStr.endsWith("DIGITS")) { "Unknown algorithm: ${secret.Usage.AI.type}" }
 
     return Token(
