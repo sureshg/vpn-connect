@@ -37,9 +37,9 @@ println("URI: ${client.otpUri(token)}")
 ### Build
 
 ```bash
-$ git clone https://github.com/sureshg/kotlin-vipaccess
-$ cd kotlin-vipaccess
-$ ./kotlin build
+$ git clone https://github.com/sureshg/vpn-connect
+$ cd vpn-connect
+$ ./kotlin build -v release
 ```
 
 ### Authenticator Setup
