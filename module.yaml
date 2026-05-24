@@ -10,12 +10,10 @@ settings:
       version: 25
       distributions: [ zulu ]
     test:
-      junitPlatformVersion: 6.1.0-M1
-      freeJvmArgs:
-        - --add-modules=jdk.incubator.vector
-    #   - --enable-preview
+      junitPlatformVersion: 6.1.0
+
   kotlin:
-    version: 2.4.0-Beta1
+    version: 2.4.0-RC
     languageVersion: 2.4
     apiVersion: 2.4
     progressiveMode: true
@@ -24,14 +22,14 @@ settings:
     verbose: false
     freeCompilerArgs:
       - -Wextra
+      - -Xcollection-literals
       - -Xexpect-actual-classes
       - -Xreport-all-warnings
       - -Xreturn-value-checker=full
       - -Xcontext-sensitive-resolution
-      - -Xannotation-default-target=param-property
-      - -Xexplicit-backing-fields
       - -Xconsistent-data-class-copy-visibility
       - -Xname-based-destructuring=complete
+      - -Xexplicit-context-arguments
     # compilerPlugins:
     #   - id: dev.zacsweers.redacted.compiler
     #     dependency: $libs.kotlin.redacted.compilerPlugin

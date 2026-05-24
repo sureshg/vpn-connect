@@ -1,10 +1,10 @@
 [versions]
-kotlin                         = "2.4.0-Beta1"
-kotlinx-coroutines             = "1.10.2"
+kotlin                         = "2.4.0-RC"
+kotlinx-coroutines             = "1.11.0"
 kotlinx-serialization          = "1.11.0"
-ktor                           = "3.4.2"
+ktor                           = "3.5.0"
 kotlin-redacted                = "1.16.0"
-kotlin-logging                 = "8.0.01"
+kotlin-logging                 = "8.0.03"
 kotlin-cryptography            = "0.6.0"
 kotlin-base32                  = "1.0.1"
 slf4j                          = "2.1.0-alpha1"
@@ -12,6 +12,7 @@ ajalt-mordant                  = "3.0.2"
 ajalt-clikt                    = "5.1.0"
 ajalt-colormath                = "3.6.1"
 kommand                        = "2.3.0"
+junit                          = "6.1.0"
 
 [libraries]
 kotlin-bom                           = { module = "org.jetbrains.kotlin:kotlin-bom"                                 , version.ref = "kotlin"}
@@ -49,3 +50,5 @@ ajalt-clikt-core                     = { module = "com.github.ajalt.clikt:clikt-
 ajalt-clikt                          = { module = "com.github.ajalt.clikt:clikt"                                    , version.ref = "ajalt-clikt"}
 ajalt-clikt-markdown                 = { module = "com.github.ajalt.clikt:clikt-markdown"                           , version.ref = "ajalt-clikt"}
 kommand                              = { module = "com.kgit2:kommand"                                               , version.ref = "kommand" }
+junit-bom                            = { module = "org.junit:junit-bom"                                             , version.ref = "junit" }
+junit-jupiter                        = { module = "org.junit.jupiter:junit-jupiter"                                 , version.ref = "junit" }
