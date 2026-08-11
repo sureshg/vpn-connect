@@ -1,18 +1,20 @@
 [versions]
-kotlin                         = "2.4.0-RC"
+kotlin                         = "2.4.20-Beta2"
 kotlinx-coroutines             = "1.11.0"
 kotlinx-serialization          = "1.11.0"
-ktor                           = "3.5.0"
-kotlin-redacted                = "1.16.0"
-kotlin-logging                 = "8.0.03"
+ktor                           = "3.5.2"
+kotlin-redacted                = "1.18.0"
+kotlin-logging                 = "8.0.4"
 kotlin-cryptography            = "0.6.0"
 kotlin-base32                  = "1.0.1"
+kotlin-vipaccess               = "0.3.0"
 slf4j                          = "2.1.0-alpha1"
 ajalt-mordant                  = "3.0.2"
 ajalt-clikt                    = "5.1.0"
 ajalt-colormath                = "3.6.1"
 kommand                        = "2.3.0"
-junit                          = "6.1.0"
+goquati-qr                     = "0.3.0"
+junit                          = "6.1.3"
 
 [libraries]
 kotlin-bom                           = { module = "org.jetbrains.kotlin:kotlin-bom"                                 , version.ref = "kotlin"}
@@ -41,6 +43,7 @@ kotlin-logging                       = { module = "io.github.oshai:kotlin-loggin
 kotlin-cryptography-core             = { module = "dev.whyoleg.cryptography:cryptography-core"                      , version.ref = "kotlin-cryptography"}
 kotlin-cryptography-optimal          = { module = "dev.whyoleg.cryptography:cryptography-provider-optimal"          , version.ref = "kotlin-cryptography"}
 kotlin-base32                        = { module = "com.osmerion.kotlin:kotlin-base32"                               , version.ref = "kotlin-base32"}
+kotlin-vipaccess                     = { module = "dev.suresh.vipaccess:kotlin-vipaccess"                           , version.ref = "kotlin-vipaccess"}
 ajalt-mordant                        = { module = "com.github.ajalt.mordant:mordant"                                , version.ref = "ajalt-mordant"}
 ajalt-mordant-coroutines             = { module = "com.github.ajalt.mordant:mordant-coroutines"                     , version.ref = "ajalt-mordant"}
 ajalt-mordant-markdown               = { module = "com.github.ajalt.mordant:mordant-markdown"                       , version.ref = "ajalt-mordant"}
@@ -50,5 +53,6 @@ ajalt-clikt-core                     = { module = "com.github.ajalt.clikt:clikt-
 ajalt-clikt                          = { module = "com.github.ajalt.clikt:clikt"                                    , version.ref = "ajalt-clikt"}
 ajalt-clikt-markdown                 = { module = "com.github.ajalt.clikt:clikt-markdown"                           , version.ref = "ajalt-clikt"}
 kommand                              = { module = "com.kgit2:kommand"                                               , version.ref = "kommand" }
+goquati-qr                           = { module = "io.github.goquati:qr"                                            , version.ref = "goquati-qr"}
 junit-bom                            = { module = "org.junit:junit-bom"                                             , version.ref = "junit" }
 junit-jupiter                        = { module = "org.junit.jupiter:junit-jupiter"                                 , version.ref = "junit" }

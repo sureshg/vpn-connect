@@ -1,49 +1,43 @@
+repositories:
+  - id: mavenLocal
+    url: mavenLocal
+    resolve: false
+    publish: true
+
 product:
   type: macos/app
   platforms: [ macosArm64 ]
 
+description: VPN Connect CLI
+
 settings:
   jvm:
-    release: 25
     storeParameterNames: true
     jdk:
-      version: 25
-      distributions: [ zulu ]
-    test:
-      junitPlatformVersion: 6.1.0
+      version: 26
+      distributions: [ zulu, temurin ]
 
   kotlin:
-    version: 2.4.0-RC
+    version: 2.4.20-Beta2
     languageVersion: 2.4
     apiVersion: 2.4
     progressiveMode: true
-    allWarningsAsErrors: false
+    allWarningsAsErrors: true
     suppressWarnings: false
     verbose: false
     freeCompilerArgs:
       - -Wextra
       - -Xcollection-literals
-      - -Xexpect-actual-classes
       - -Xreport-all-warnings
       - -Xreturn-value-checker=full
       - -Xcontext-sensitive-resolution
       - -Xconsistent-data-class-copy-visibility
       - -Xname-based-destructuring=complete
       - -Xexplicit-context-arguments
-    # compilerPlugins:
-    #   - id: dev.zacsweers.redacted.compiler
-    #     dependency: $libs.kotlin.redacted.compilerPlugin
-    #     options:
-    #       enabled: true
-    #       replacementString: "█"
-    #       redactedAnnotations: dev/zacsweers/redacted/annotations/Redacted
-    #       unredactedAnnotations: dev/zacsweers/redacted/annotations/Unredacted
-
     optIns:
       - kotlin.ExperimentalStdlibApi
       - kotlin.ExperimentalUnsignedTypes
       - kotlin.contracts.ExperimentalContracts
-      - kotlin.contracts.ExperimentalExtendedContracts
       - kotlin.io.encoding.ExperimentalEncodingApi
       - kotlin.time.ExperimentalTime
       - kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -51,47 +45,68 @@ settings:
       - kotlin.ExperimentalMultiplatform
       - kotlin.uuid.ExperimentalUuidApi
       - kotlin.concurrent.atomics.ExperimentalAtomicApi
-      - dev.whyoleg.cryptography.DelicateCryptographyApi
-
     serialization:
       version: 1.11.0
       format: json
+  publishing:
+    enabled: true
+    group: dev.suresh.vipaccess
+    version: 0.1.0
+    signArtifacts: false
+    publishSources: false
+    pom:
+      url: https://github.com/sureshg/vpn-connect
+      scm: https://github.com/sureshg/vpn-connect.git
+      developers:
+        - name: Suresh
+          url: https://suresh.dev
+      licenses:
+        - name: The Apache License, Version 2.0
+          url: https://www.apache.org/licenses/LICENSE-2.0.txt
+
+settings@jvm:
+  java:
+    compileIncrementally: true
+    freeCompilerArgs:
+      - -Xlint:all
+  jvm:
+    test:
+      junitPlatformVersion: 6.1.3
+      freeJvmArgs:
+        - --enable-native-access=ALL-UNNAMED
+        - -Djunit.platform.reporting.open.xml.enabled=true
 
 settings@native:
   kotlin:
-    debug: false
     optIns:
       - kotlinx.cinterop.ExperimentalForeignApi
       - kotlin.experimental.ExperimentalNativeApi
 
 dependencies:
   - bom: $libs.kotlin.bom
-  - bom: $libs.kotlinx.coroutines.bom
-  - bom: $libs.kotlinx.serialization.bom
   - bom: $libs.ktor.bom
   - $libs.kotlinx.coroutines.core
   - $libs.kotlin.logging
-  - $libs.ktor.client.core
-  - $libs.ktor.client.cio
-  - $libs.ktor.client.content.negotiation
-  - $libs.ktor.client.encoding
-  - $libs.ktor.client.logging
-  - $libs.ktor.client.resources
-  - $libs.ktor.client.serialization
-  - $libs.ktor.serialization.xml
-  - $libs.kotlin.redacted.annotations
-  - $libs.kotlin.cryptography.core
-  - $libs.kotlin.cryptography.optimal
-  - $libs.kotlin.base32
   - $libs.kommand
   - $libs.ajalt.clikt
   - $libs.ajalt.mordant.coroutines
-
-dependencies@native:
-  - $libs.ktor.client.curl
+  - $libs.kotlin.vipaccess
+  - $libs.goquati.qr
 
 dependencies@jvm:
   - $libs.slf4j.simple
+
+test-settings:
+  kotlin:
+    powerAssert:
+      enabled: true
+      functions:
+        - kotlin.assert
+        - kotlin.require
+        - kotlin.test.assertTrue
+        - kotlin.test.assertEquals
+        - kotlin.test.assertNull
+        - kotlin.test.assertContentEquals
 
 test-dependencies:
   - $libs.kotlin.test

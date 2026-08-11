@@ -1,43 +1,6 @@
 package cmd
 
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
-import kotlinx.serialization.json.Json
-import vip.Token
-import vip.VipAccess
-import kotlin.time.Duration.Companion.milliseconds
-
-fun main() = runBlocking {
-  //  val token = SvipClient.provision()
-  //
-  //  println(Json { prettyPrint = true }.encodeToString(token))
-  //  println("Token: $token")
-  //
-  val token =
-      Json.decodeFromString<Token>(
-          """
-          {
-              "id": "xxx",
-              "secret": "xxx"
-          }
-          """
-              .trimIndent()
-      )
-
-  val spinner = listOf("⣷", "⣯", "⣟", "⡿", "⢿", "⣻", "⣽", "⣾")
-  var i = 0
-  println("\n🔐 VIP Access - ${token.id}\n")
-
-  val vip = VipAccess()
-  while (true) {
-    val otp = vip.generateTotp(token)
-    val remaining = token.remainingSeconds
-    // val bar = "█".repeat(remaining) + "░".repeat(token.period - remaining)
-
-    print("\r ${spinner[i++ % spinner.size]} $otp (${remaining}s) ")
-    delay(100.milliseconds)
-  }
-
+fun vpnCmd() {
   //    println("Connecting to 2FA VPN...Username: ${getUsername()}")
   //
   //// Disconnect first
