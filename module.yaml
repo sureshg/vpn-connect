@@ -6,7 +6,6 @@ repositories:
 
 product:
   type: macos/app
-  platforms: [ macosArm64 ]
 
 description: VPN Connect CLI
 
